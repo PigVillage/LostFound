@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/jquery-1.12.1.min.js"></script>
+    <script src="./js/bmob-min.js"></script>
+    <script src="./js/bmobSocketIo-min.js"></script>
+    <script src="./js/data.js"></script>
+    <link rel="stylesheet" href="./css/weui.css">
+    <script src="https://cdn1.lncld.net/static/js/av-mini-0.6.4.js"></script>
+</head>
+<body>
+
+<input type="file" id="InputFile" onchange="upload_img()">
+<script>
+    AV.initialize('ndpVWhAomhGYWv149Gnlx0IT-gzGzoHsz', 'kpz8wV2LzDOOcRybcsEaUS80');
+    var data;
+    function upload_img() {
+        var fileUploadControl = $("#InputFile")[0];
+        data = fileUploadControl.files[0];
+        var avFile = new AV.File(data.name, data,Image);
+        avFile.save().then(function(obj) {
+            // 数据保存成功
+            console.log(obj.url());
+        }, function(err) {
+            // 数据保存失败
+            console.log(err);
+        });
+    }
+</script>
+
+</body>
+</html>
